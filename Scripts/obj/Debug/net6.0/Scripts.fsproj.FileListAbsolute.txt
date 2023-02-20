@@ -1,0 +1,11 @@
+D:\F#\PreparingForSGP\Scripts\bin\Debug\net6.0\Scripts.deps.json
+D:\F#\PreparingForSGP\Scripts\bin\Debug\net6.0\Scripts.dll
+D:\F#\PreparingForSGP\Scripts\bin\Debug\net6.0\Scripts.pdb
+D:\F#\PreparingForSGP\Scripts\bin\Debug\net6.0\Scripts.xml
+D:\F#\PreparingForSGP\Scripts\obj\Debug\net6.0\Scripts.fsproj.AssemblyReference.cache
+D:\F#\PreparingForSGP\Scripts\obj\Debug\net6.0\Scripts.AssemblyInfoInputs.cache
+D:\F#\PreparingForSGP\Scripts\obj\Debug\net6.0\Scripts.AssemblyInfo.fs
+D:\F#\PreparingForSGP\Scripts\obj\Debug\net6.0\Scripts.fsproj.CoreCompileInputs.cache
+D:\F#\PreparingForSGP\Scripts\obj\Debug\net6.0\Scripts.dll
+D:\F#\PreparingForSGP\Scripts\obj\Debug\net6.0\Scripts.xml
+D:\F#\PreparingForSGP\Scripts\obj\Debug\net6.0\Scripts.pdb

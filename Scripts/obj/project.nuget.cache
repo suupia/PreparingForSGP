@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "9LuehTFJLYYn0uDE+zR+hwg9xitMc5SZZoTRV4Bpe/j8Vkj+XrZoLKAzOZNHAkF9oABfuMYad+0h9nL6HoHKJw==",
+  "success": true,
+  "projectFilePath": "D:\\F#\\PreparingForSGP\\Scripts\\Scripts.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\fsharp.core\\6.0.6\\fsharp.core.6.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}
