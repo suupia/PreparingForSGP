@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-direction: column; height: 100%; width: 50%; min-width: auto;">
+        <ui:VisualElement name="MoneyElement" style="background-color: rgb(255, 241, 158); width: 100%; height: 50%;">
+            <ui:ScrollView style="width: 100%; height: 100%;">
+                <ui:Button text="Button" display-tooltip-when-elided="true" name="Button" />
+                <ui:Button text="Button" display-tooltip-when-elided="true" name="Button" />
+                <ui:Button text="Button" display-tooltip-when-elided="true" name="Button" />
+                <ui:Button text="Button" display-tooltip-when-elided="true" name="Button" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement name="StoreElement" style="background-color: rgb(255, 241, 158); width: 100%; height: 50%;">
+            <ui:Button text="Button" display-tooltip-when-elided="true" name="Button" />
+        </ui:VisualElement>
+        <ui:Button text="Button" display-tooltip-when-elided="true" name="RootButton" style="background-color: rgba(188, 107, 107, 255);" />
+    </ui:VisualElement>
+</ui:UXML>
