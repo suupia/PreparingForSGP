@@ -1,16 +1,23 @@
-﻿namespace Scripts
+﻿namespace FSharpProject.MoneySystem
 
 module MoneySystemModule =
     //ゲームで使う数字の型を定義
-    type Amount = int
+    type Amount = int //主にお金に使用
+    type Level = int 
+    type Cost =  Level -> Amount
 
     //Buyによって減る
     type IResource =
         abstract member Amount: Amount
 
-
     type IBuyable =
-        abstract member Buy: IResource -> Amount
+        abstract member Buy: IResource -> IResource
+
+    type IIncrement = 
+        abstract member IIncrement : int -> int
+
+    type IDecrement = 
+        abstract member IDecrement : int -> int
 
 
 
@@ -18,35 +25,56 @@ module MoneyModule =
     open MoneySystemModule
 
     type Money(init: Amount) =
-        let mutable amount = init
+        let  amount = init
         member this.Amount = amount
 
         interface IResource with
             member this.Amount = amount
 
-        member this.Decrement delta =
-            amount <- amount - delta
-            amount
-
+     
 
 
 
 module FacilityModule =
     open MoneySystemModule
+    open MoneyModule
 
-    type FacilityData = { Name: string; Price: Amount }
+    type FacilityRecord = { Name: string; Price: Amount }
 
+    type Facility(ownedNum, facilityRecord: FacilityRecord) =
 
-    type Facility(facilityData: FacilityData) =
-
-        let mutable ownedNum = 0
+        let  ownedNum = ownedNum
         member this.OwnedNumber = ownedNum
 
         interface IBuyable with
             member this.Buy resource =
-                resource.Amount - (facilityData.Price )
+               new Money(  resource.Amount - facilityRecord.Price )
 
-        member this.IncrementOwnedNumber increment = ownedNum <- ownedNum + increment
+        
+        member this.Name = facilityRecord.Name
+        member this.Price = facilityRecord.Price
+
+        member this.IncrementOwnedNumber increment =
+            new Facility( ownedNum + increment,facilityRecord)
+
+
+
+module StoreModule =
+    open MoneySystemModule
+    open MoneyModule
+
+    type Store(level:Level,cost:Cost) =
+        let level = level : Level
+        let cost = cost 
+
+        member this.Level = level
+        member this.LevelUp (resource:IResource) = 
+            if resource.Amount >= cost level
+             then (new Store(level+1,cost), new Money(resource.Amount-cost level))
+             else (new Store(level,cost), new Money(resource.Amount))
+        member this.Cost =
+            cost  level
+
 
 
 
@@ -56,7 +84,7 @@ module ThiefModule =
 
     type Id = int
     type Level = int
-    type ThiefData = { Id :Id ; Level: Level ; Reward:Level->Amount} 
+    type ThiefRecord = { Id :Id ; Level: Level ; Reward:Level->Amount} 
 
     let getThiefName id = 
         match id with   
@@ -64,21 +92,21 @@ module ThiefModule =
            | x -> $"Thief{x}" //後で詳細を決める
 
 
-    type Thief(thiefData: ThiefData,caughtThiefCollection :CaughtThiefContainer) =
+    type Thief(thiefRecord: ThiefRecord) =
 
-        member this.Id = thiefData.Id
+        member this.Id = thiefRecord.Id
 
-        member this.Reward = thiefData.Level |> thiefData.Reward
+        member this.Reward = thiefRecord.Level |> thiefRecord.Reward
 
-        member this.OnCaught = 
-            caughtThiefCollection.Add this
+        member this.OnCaught (caughtThiefCollection:CaughtThiefContainer) = 
+            caughtThiefCollection.Add(this)
 
-    and CaughtThiefContainer() = 
+    and CaughtThiefContainer(thiefs) = 
 
-        let mutable thiefs = List.empty : list<Thief>
+        let thiefs = thiefs
 
         member this.Add thief = 
-            thiefs <- thief::thiefs
+            new CaughtThiefContainer(thief::thiefs )
 
         member this.TotalCaught = 
             thiefs |> List.length
